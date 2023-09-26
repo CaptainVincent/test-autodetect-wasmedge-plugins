@@ -1,0 +1,60 @@
+name: verify
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+on:
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'info'
+  push:
+    branches: [master]
+
+jobs:
+
+  static :
+    runs-on: ubuntu-latest
+
+    env:
+      WASMEDGE_PLUGIN_PATH: "/home/runner/.wasmedge/plugin"
+      LD_LIBRARY_PATH: "/home/runner/.wasmedge/lib"
+
+    steps:
+
+    - uses: actions/checkout@v3
+      with:
+        submodules: recursive
+
+    - name: Install WasmEdge and all plugins
+      run: |
+        curl -sSf https://raw.githubusercontent.com/CaptainVincent/WasmEdge/0.14.0-preview/utils/install.sh | bash -s -- -v 0.14.0-preview \
+          --plugins wasi_crypto wasi_nn-ggml wasmedge_tensorflow wasmedge_tensorflowlite wasmedge_image wasm_bpf
+
+    - name: static link wasmedge version
+      run: |
+        cargo run
+
+  dynamic :
+    runs-on: ubuntu-latest
+
+    env:
+      LD_LIBRARY_PATH: "/home/runner/.wasmedge/lib"
+
+    steps:
+
+    - uses: actions/checkout@v3
+      with:
+        submodules: recursive
+
+    - name: Install WasmEdge and all plugins
+      run: |
+        curl -sSf https://raw.githubusercontent.com/CaptainVincent/WasmEdge/0.14.0-preview/utils/install.sh | bash -s -- -v 0.14.0-preview \
+          --plugins wasi_crypto wasi_nn-ggml wasmedge_tensorflow wasmedge_tensorflowlite wasmedge_image wasm_bpf
+
+    - name: dynamic link wasmedge version
+      run: |
+        cargo run --no-default-features
