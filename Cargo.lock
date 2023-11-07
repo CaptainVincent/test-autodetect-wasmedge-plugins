@@ -48,6 +48,7 @@ name = "auto_detect_plugins"
 version = "0.4.0"
 dependencies = [
  "wasmedge-sdk",
+ "wasmedge-sys",
 ]
 
 [[package]]
@@ -1412,7 +1413,7 @@ dependencies = [
 [[package]]
 name = "wasmedge-macro"
 version = "0.6.1"
-source = "git+https://github.com/CaptainVincent/wasmedge-rust-sdk.git?branch=preview#152b10389c4700e880c9023772696e7abe971cd7"
+source = "git+https://github.com/second-state/wasmedge-rust-sdk.git#3146e89f6808fc44471daa009d7a8dfce04bd69d"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -1422,7 +1423,7 @@ dependencies = [
 [[package]]
 name = "wasmedge-sdk"
 version = "0.12.3-dev"
-source = "git+https://github.com/CaptainVincent/wasmedge-rust-sdk.git?branch=preview#152b10389c4700e880c9023772696e7abe971cd7"
+source = "git+https://github.com/second-state/wasmedge-rust-sdk.git#3146e89f6808fc44471daa009d7a8dfce04bd69d"
 dependencies = [
  "anyhow",
  "cfg-if",
@@ -1437,7 +1438,7 @@ dependencies = [
 [[package]]
 name = "wasmedge-sys"
 version = "0.17.3"
-source = "git+https://github.com/CaptainVincent/wasmedge-rust-sdk.git?branch=preview#152b10389c4700e880c9023772696e7abe971cd7"
+source = "git+https://github.com/second-state/wasmedge-rust-sdk.git#3146e89f6808fc44471daa009d7a8dfce04bd69d"
 dependencies = [
  "bindgen",
  "cfg-if",
@@ -1463,7 +1464,7 @@ dependencies = [
 [[package]]
 name = "wasmedge-types"
 version = "0.4.4"
-source = "git+https://github.com/CaptainVincent/wasmedge-rust-sdk.git?branch=preview#152b10389c4700e880c9023772696e7abe971cd7"
+source = "git+https://github.com/second-state/wasmedge-rust-sdk.git#3146e89f6808fc44471daa009d7a8dfce04bd69d"
 dependencies = [
  "thiserror",
  "wat",

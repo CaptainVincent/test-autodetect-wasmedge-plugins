@@ -4,9 +4,16 @@ name = "auto_detect_plugins"
 version = "0.4.0"
 
 [dependencies]
-wasmedge-sdk = { git = "https://github.com/CaptainVincent/wasmedge-rust-sdk.git", branch = "preview" }
+wasmedge-sdk = { git = "https://github.com/second-state/wasmedge-rust-sdk.git" }
+wasmedge-sys = { git = "https://github.com/second-state/wasmedge-rust-sdk.git" }
+# wasmedge-sdk = { git = "https://github.com/CaptainVincent/wasmedge-rust-sdk.git", branch = "preview" }
+# wasmedge-sys = { git = "https://github.com/CaptainVincent/wasmedge-rust-sdk.git", branch = "preview" }
+# wasmedge-sdk = { path = "../wasmedge-rust-sdk" }
+# wasmedge-sys = { path = "../wasmedge-rust-sdk/crates/wasmedge-sys" }
+
 
 [features]
-default = ["standalone", "static"]
+default = ["standalone", "static", "wasi_nn"]
 standalone = ["wasmedge-sdk/standalone"]
 static = ["wasmedge-sdk/static"]
+wasi_nn = ["wasmedge-sdk/wasi_nn", "wasmedge-sys/wasi_nn"]
